@@ -1,6 +1,7 @@
 'use strict'
 
 let Model = require('../models/articles')
+const slug = require('slug')
 let Article = {}
 
 Article.getArticles = (req, res, next) => {
@@ -15,7 +16,7 @@ Article.newArticle = (req, res, next) => {
     image: req.body.image,
     content: req.body.content,
     category: req.body.category,
-    slug: req.body.slug
+    slug: slug(req.body.title).toLowerCase()
   }).then((data) => {
     res.send(data)
   })
@@ -31,7 +32,8 @@ Article.updateArticle = (req, res, next) => {
   Model.update({slug: req.params.slug}, {$set: {
       title: req.body.title,
       content: req.body.content,
-      category: req.body.category
+      category: req.body.category,
+      slug: slug(req.body.title).toLowerCase()
   }}).then((data) => {
     res.send(data)
   })
