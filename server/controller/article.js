@@ -22,7 +22,7 @@ Article.newArticle = (req, res, next) => {
 }
 
 Article.getArticle = (req, res, next) => {
-  Model.findOne({ 'slug': req.params.slug }).then((data) => {
+  Model.findOne({ slug: req.params.slug }).then((data) => {
     res.send(data)
   })
 }
