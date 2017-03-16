@@ -29,8 +29,8 @@ function loadData () {
           <div class="col-lg-2">
             <div id="createdAt-${article.slug}" class="date">${article.createdAt}</div>
             <div class="tweet share-link clearfix">
-              <button class="btn-default" style="border: 1px solid transparent;"  data-toggle="modal" data-target="#editArticle" onclick="getOneArticle('${article.slug}')">Edit</button>
-              <button class="btn-info" style="border: 1px solid transparent;" onclick="removeArticle('${article.slug}')">Delete</button>
+              <button class="btn-default" id="btn-edit-article" style="border: 1px solid transparent;"  data-toggle="modal" data-target="#editArticle" onclick="getOneArticle('${article.slug}')">Edit</button>
+              <button class="btn-info" id="btn-delete-article" style="border: 1px solid transparent;" onclick="removeArticle('${article.slug}')">Delete</button>
             </div>
           </div>
         </div>

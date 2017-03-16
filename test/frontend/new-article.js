@@ -1,7 +1,6 @@
 const chai = require('chai')
 const should = chai.should()
 const Nightmare = require('nightmare')
-require('./new-article.js')
 
 describe(`Create new article`, function () {
   this.timeout(50000)
