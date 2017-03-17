@@ -41,6 +41,18 @@ function loadData () {
   // })
 }
 
+function getQueryVariable (variable) {
+  var query = window.location.search.substring(1)
+  var vars = query.split('&')
+  for (var i = 0;i < vars.length;i++) {
+    var pair = vars[i].split('=')
+    if (pair[0] == variable) {return pair[1];}
+  }
+  return (false)
+}
+
+var slug = getQueryVariable('slug')
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -59,7 +71,7 @@ var app = new Vue({
           console.log(error)
         })
     },
-    getArticle: (slug) => {
+    getArticle: () => {
       axios.get('http://localhost:3000/api/article/' + slug)
         .then(function (response) {
           app.article = response.data
@@ -82,23 +94,24 @@ var app = new Vue({
   }
 })
 
-app.getArticles()
+// app.getArticles()
 app.getCategories()
+app.getArticle()
 
-// let getOneArticle = (slug) => {
-//   $.ajax({
-//     url: 'http://localhost:3000/api/article/' + slug,
-//     type: 'GET',
-//     success: (article) => {
-//       $('#edit_title').val(article.title)
-//       $('#edit_category').val(article.category)
-//       $('#edit_content').val(article.content)
-//       $('#edit_image').val(article.image)
-//       $('#edit_slug').val(article.slug)
-//       $('#edit_button').attr('onclick', `updateArticle('${slug}')`)
-//     }
-//   })
-// }
+let getOneArticle = () => {
+  $.ajax({
+    url: 'http://localhost:3000/api/article/' + slug,
+    type: 'GET',
+    success: (article) => {
+      $('#edit_title').val(article.title)
+      $('#edit_category').val(article.category)
+      $('#edit_content').val(article.content)
+      $('#edit_image').val(article.image)
+      $('#edit_slug').val(article.slug)
+      $('#edit_button').attr('onclick', `updateArticle('${slug}')`)
+    }
+  })
+}
 
 let newArticle = () => {
   $.ajax({

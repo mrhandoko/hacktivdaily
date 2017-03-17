@@ -5,7 +5,7 @@ const slug = require('slug')
 let Article = {}
 
 Article.getArticles = (req, res, next) => {
-  Model.find({}).then((data) => {
+  Model.find({}).sort({createdAt: -1}).then((data) => {
     res.send(data)
   })
 }
@@ -41,6 +41,12 @@ Article.updateArticle = (req, res, next) => {
 
 Article.deleteArticle = (req, res, next) => {
   Model.remove({slug: req.params.slug}).then((data) => {
+    res.send(data)
+  })
+}
+
+Article.getArticleCategory = (req, res, next) => {
+  Model.distinct('category').then((data) => {
     res.send(data)
   })
 }

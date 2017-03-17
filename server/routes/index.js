@@ -9,6 +9,7 @@ router.post('/article', Article.newArticle)
 router.get('/article/:slug', Article.getArticle)
 router.put('/article/:slug', Article.updateArticle)
 router.delete('/article/:slug', Article.deleteArticle)
+router.get('/category', Article.getArticleCategory)
 
 router.get('/users', User.getUsers)
 router.post('/user', User.newUser)
