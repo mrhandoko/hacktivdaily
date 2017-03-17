@@ -11,9 +11,8 @@ User.getUsers = (req, res, next) => {
 
 User.newUser = (req, res, next) => {
   Model.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
+    username: req.body.name,
+    email: req.body.email
   }).then((data) => {
     res.send(data)
   })
