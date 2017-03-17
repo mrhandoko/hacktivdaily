@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // loadData()
+  loadData()
 })
 
 function loadData () {
@@ -39,51 +39,52 @@ function loadData () {
   //     })
   //   }
   // })
+  var app = new Vue({
+    el: '#app',
+    data: {
+      articles: [],
+      article: [],
+      categories: []
+    },
+    methods: {
+      getArticles: () => {
+        axios.get('http://localhost:3000/api/articles')
+          .then(function (response) {
+            app.articles = response.data
+            console.log(app.articles)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      },
+      getArticle: (slug) => {
+        axios.get('http://localhost:3000/api/article/' + slug)
+          .then(function (response) {
+            app.article = response.data
+            console.log(app.articles)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      },
+      getCategories: () => {
+        axios.get('http://localhost:3000/api/category')
+          .then(function (response) {
+            app.categories = response.data
+            console.log(app.categories)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+    }
+  })
+
+  app.getArticles()
+  app.getCategories()
 }
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    articles: [],
-    article: [],
-    categories: []
-  },
-  methods: {
-    getArticles: () => {
-      axios.get('http://localhost:3000/api/articles')
-        .then(function (response) {
-          app.articles = response.data
-          console.log(app.articles)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
-    getArticle: (slug) => {
-      axios.get('http://localhost:3000/api/article/' + slug)
-        .then(function (response) {
-          app.article = response.data
-          console.log(app.articles)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
-    getCategories: () => {
-      axios.get('http://localhost:3000/api/category')
-        .then(function (response) {
-          app.categories = response.data
-          console.log(app.categories)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-  }
-})
 
-app.getArticles()
-app.getCategories()
 
 // let getOneArticle = (slug) => {
 //   $.ajax({
