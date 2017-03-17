@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "axios": "^0.15.3",
     "bcrypt-nodejs": "0.0.3",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
